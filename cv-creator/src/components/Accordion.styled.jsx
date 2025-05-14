@@ -59,6 +59,7 @@ const StyledAccordionTrigger = styled(Accordion.Trigger)`
     border-radius: 0;
     border-bottom: 1px solid black;
     padding: 12px 18px;
+    background-color: inherit;
 
 
 
@@ -79,8 +80,6 @@ const StyledAccordionContent = styled(Accordion.Content)`
     &[data-state="closed"] {
 	    animation: slideUp 300ms ease-out;
     }
-
-
 
 `
 

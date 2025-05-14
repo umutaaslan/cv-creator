@@ -11,16 +11,19 @@ const CvModifier = () => {
                         header={"Personal Details"}
                         Content={PersonalDetailsForm}
                         value="item-1"
+                        key="item-1"
                     />
                     <AccordionElement 
                         header={"Personal Details2"}
                         Content={PersonalDetailsForm}
                         value="item-2"
+                        key="item-2"
                     />
                     <AccordionElement 
                         header={"Personal Details3"}
                         Content={PersonalDetailsForm}
                         value="item-3"
+                        key="item-3"
                     />
             </AccordionWrapper>
             </Wrapper>
@@ -38,9 +41,11 @@ const Wrapper = styled.div`
 `
  
 const AccordionWrapper = styled.div`
-    /* border: 1px solid gray; */
-    border-radius: 0.3rem;
-    overflow: clip;
+    & > div:nth-last-child(1) > div > h3 > button{
+        border: none;
+    }
+    border: 1px solid gray;
+    border-radius: 4px;
 `
 
 export default CvModifier;
