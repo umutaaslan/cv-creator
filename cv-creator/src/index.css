@@ -1,0 +1,69 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+/*
+  Josh's Custom CSS Reset (customized by jums)
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  * {
+    margin: 0;
+  }
+  html, body, #root {
+    height: 100%;
+    padding: 0;
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+  body, #root {
+    line-height: calc(1em + 0.5rem);
+    -webkit-font-smoothing: antialiased;
+  }
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  input, button, textarea, select {
+    font: inherit;
+  }
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  #root, #__next {
+    isolation: isolate;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+ 
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: 100%;
+  }
+ 
+  
+/* keyframes */
+@keyframes slideDown {
+	from {
+		height: 0;
+	}
+	to {
+		height: var(--radix-accordion-content-height);
+	}
+}
+
+@keyframes slideUp {
+	from {
+		height: var(--radix-accordion-content-height);
+	}
+	to {
+		height: 0;
+	}
+}
