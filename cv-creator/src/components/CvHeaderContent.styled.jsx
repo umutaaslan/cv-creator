@@ -33,6 +33,7 @@ const Title = styled.div`
 const Item = styled.div`
     display: flex;
     flex-direction: column;
+    margin-top: 8px;
 
 `
 const ItemTitle = styled.div`
