@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const CvHeaderContent = ({headerItems}) => {
-    
+    console.log(headerItems)
     return ( 
         <Wrapper>
             <Title>Title</Title>
