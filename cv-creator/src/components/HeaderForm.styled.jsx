@@ -26,13 +26,14 @@ const HeaderForm = ({cvInfo, setCvInfo}) => {
     const handleAddItem = () => {
         const newItem = {
             title: itemTitle,
-            subItems: {subItems}
+            subItems: subItems,
+            id: uuidv4()
         }
-        const newCvInfo = cvInfo;
-        newCvInfo.headerItems.push(newItem);
+        const newCvInfo = {
+            ...cvInfo,
+            headerItems: [...cvInfo.headerItems, newItem]
+        }
         setCvInfo(newCvInfo)
-
-        console.log(cvInfo)
         
     }
 

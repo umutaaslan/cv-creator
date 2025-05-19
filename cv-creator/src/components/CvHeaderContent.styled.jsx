@@ -1,18 +1,30 @@
 import styled from "styled-components";
+import React from "react";
 
 const CvHeaderContent = ({headerItems}) => {
-    console.log(headerItems)
     return ( 
         <Wrapper>
-            <Title>Title</Title>
-            <Item>
-                <ItemTitle>Address</ItemTitle>
-                <ItemContent>My address is ...</ItemContent>
-            </Item>
-            <Item>
-                <ItemTitle>Title 2</ItemTitle>
-                <ItemContent>My contact is ...</ItemContent>
-            </Item>
+            {headerItems.map(item => {
+                return (
+                <React.Fragment key={item.id}>
+                    <Title data-id={item.id}>{item.title}</Title>
+                    {item.subItems.map(subItem => {
+                    return(
+                        <Item key={subItem.id} data-id={subItem.id}>
+                            <ItemTitle>{subItem.title}</ItemTitle>
+                            <ItemContent>{subItem.detail}</ItemContent>
+                        </Item>
+                    )
+                })}
+               
+                </React.Fragment>
+                
+                )
+
+            })}
+            
+            
+            
         </Wrapper>
      );
 }

@@ -3,14 +3,13 @@ import CvHeaderContent from "./CvHeaderContent.styled";
 import CvPageMainItem from "./CvPageMainItem.styled";
 
 const CvPage = ({cvInfo}) => {
+    
     return ( 
         <Wrapper>
             <Header>
                 <StyledImage src="../../public/examplePp.jpg"></StyledImage>
                 <HeaderContentWrapper>
                     <CvHeaderContent headerItems={cvInfo.headerItems}></CvHeaderContent>
-                    <CvHeaderContent></CvHeaderContent>
-                    <CvHeaderContent></CvHeaderContent>
                 </HeaderContentWrapper>
             </Header>
             <Main>
