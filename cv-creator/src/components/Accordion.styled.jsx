@@ -4,7 +4,7 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 
 
 
-const AccordionElement = ({header, Content, value}) => {
+const AccordionElement = ({header, value, children}) => {
     return ( 
         <StyledAccordionRoot
                     type="single"
@@ -20,7 +20,7 @@ const AccordionElement = ({header, Content, value}) => {
                             </StyledAccordionTrigger>
                         </StyledAccordionHeader>
                         <StyledAccordionContent>
-                            <Content />   
+                            {children}  
                         </StyledAccordionContent>
                     </StyledAccordionItem>
 

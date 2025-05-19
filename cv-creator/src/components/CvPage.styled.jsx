@@ -2,26 +2,26 @@ import styled from "styled-components";
 import CvHeaderContent from "./CvHeaderContent.styled";
 import CvPageMainItem from "./CvPageMainItem.styled";
 
-const CvPage = () => {
+const CvPage = ({cvInfo}) => {
     return ( 
         <Wrapper>
             <Header>
                 <StyledImage src="../../public/examplePp.jpg"></StyledImage>
                 <HeaderContentWrapper>
-                    <CvHeaderContent></CvHeaderContent>
+                    <CvHeaderContent headerItems={cvInfo.headerItems}></CvHeaderContent>
                     <CvHeaderContent></CvHeaderContent>
                     <CvHeaderContent></CvHeaderContent>
                 </HeaderContentWrapper>
             </Header>
             <Main>
                 <Name>
-                    Jonathan Doe
+                    {cvInfo.name || "Jonathan Doe"}
                 </Name>
                 <Occupation>
-                    Web developer
+                    {cvInfo.occupation || "Web developer"}
                 </Occupation>
                 <About>
-                    Highly motivated and results-oriented Web Developer with 4 years of experience in building user-friendly and responsive web applications. Proven ability to design, develop, and implement web applications using a variety of programming languages and frameworks. Passionate about creating innovative and performant web experiences.
+                    {cvInfo.about || "Highly motivated and results-oriented Web Developer with 4 years of experience in building user-friendly and responsive web applications. Proven ability to design, develop, and implement web applications using a variety of programming languages and frameworks. Passionate about creating innovative and performant web experiences."}
                 </About>
                 <Section>
                     <SectionTitle>
@@ -82,6 +82,9 @@ const Main = styled.main`
      height: 100%;
      width: 100%;
      padding: 48px 24px;
+     overflow-x: auto;
+     overflow-y: hidden;
+
 `
 
 const Name = styled.div`

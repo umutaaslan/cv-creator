@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-const CvHeaderContent = () => {
+const CvHeaderContent = ({headerItems}) => {
+    
     return ( 
         <Wrapper>
             <Title>Title</Title>

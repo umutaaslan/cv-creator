@@ -1,30 +1,30 @@
 import styled from "styled-components";
 import AccordionElement from "./Accordion.styled";
 import PersonalDetailsForm from "./PersonalDetailsForm.styled";
+import HeaderForm from "./HeaderForm.styled";
 
-const CvModifier = () => {
+const CvModifier = ({cvInfo, setCvInfo}) => {
     return ( 
         <>
             <Wrapper>
                 <AccordionWrapper>
                     <AccordionElement 
                         header={"Personal Details"}
-                        Content={PersonalDetailsForm}
                         value="item-1"
                         key="item-1"
-                    />
+                    ><PersonalDetailsForm cvInfo={cvInfo} setCvInfo={setCvInfo} /></AccordionElement>
+
                     <AccordionElement 
-                        header={"Personal Details2"}
-                        Content={PersonalDetailsForm}
+                        header={"Header"}
                         value="item-2"
                         key="item-2"
-                    />
+                    ><HeaderForm cvInfo={cvInfo} setCvInfo={setCvInfo} /></AccordionElement>
+
                     <AccordionElement 
                         header={"Personal Details3"}
-                        Content={PersonalDetailsForm}
                         value="item-3"
                         key="item-3"
-                    />
+                    ><PersonalDetailsForm cvInfo={cvInfo} setCvInfo={setCvInfo} /></AccordionElement>
             </AccordionWrapper>
             </Wrapper>
         </>

@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import CvPage from "./CvPage.styled";
 
-const Cv = () => {
+const Cv = ({cvInfo}) => {
     return ( 
         <>
             <Wrapper>
-                <CvPage>
+                <CvPage cvInfo={cvInfo}>
 
                 </CvPage>
             </Wrapper>
