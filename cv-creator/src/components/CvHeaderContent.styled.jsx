@@ -1,25 +1,46 @@
-import styled from "styled-components";
+import {styled, css} from "styled-components";
 import React from "react";
 
 const CvHeaderContent = ({headerItems}) => {
     return ( 
         <Wrapper>
             {headerItems.map(item => {
+                if(!item.isEditable){
                 return (
                 <React.Fragment key={item.id}>
                     <Title data-id={item.id}>{item.title}</Title>
                     {item.subItems.map(subItem => {
                     return(
-                        <Item key={subItem.id} data-id={subItem.id}>
-                            <ItemTitle>{subItem.title}</ItemTitle>
-                            <ItemContent>{subItem.detail}</ItemContent>
-                        </Item>
+
+                            <Item key={subItem.id} data-id={subItem.id}>
+                                <ItemTitle>{subItem.title}</ItemTitle>
+                                <ItemContent>{subItem.detail}</ItemContent>
+                            </Item>
+                        
                     )
                 })}
                
                 </React.Fragment>
-                
                 )
+            }
+
+            if(item.isEditable){
+                return (
+                <React.Fragment key={item.id}>
+                    <EditableTitle data-id={item.id} placeholder={item.title} />
+                    {item.subItems.map(subItem => {
+                    return(
+                            <EditableItem key={subItem.id} data-id={subItem.id}>
+                                <EditableItemTitle placeholder={subItem.title} />
+                                <EditableItemContent placeholder={subItem.detail} />
+                            </EditableItem>
+                        
+                    )
+                })}
+               
+                </React.Fragment>
+                )
+            }
 
             })}
             
@@ -30,33 +51,100 @@ const CvHeaderContent = ({headerItems}) => {
 }
  
 
-
-const Wrapper = styled.div`
-    color: white;
-`
-
-const Title = styled.div`
+const sharedTitleStyles = css`
     font-weight: inherit;
     font-size: 1.1rem;
     width: 100%;
     border-bottom: 1px solid white;
     padding-bottom: 5px;
     margin-bottom: 8px;
-`
-const Item = styled.div`
+`;
+
+
+const sharedItemStyles = css`
     display: flex;
     flex-direction: column;
     margin-top: 8px;
+`;
 
-`
-const ItemTitle = styled.div`
+const sharedItemTitleStyles = css`
     font-weight: 700;
     font-size: small;
     font-size: .65rem;
+`;
+
+const sharedItemContentStyles = css`
+    font-size: .5rem;
+
+`;
+
+const sharedInputStyles = css`
+    background: none;
+    border: none;
+    color: white;
+    width: 100%;
+
+
+    &:focus{
+        outline: none;
+    }
+    &::placeholder{
+        color: white;
+    }
+    &:hover{
+        outline: 1px solid green;
+        border-radius: 4px;
+        &::placeholder{
+            opacity: 0.5;
+        }
+    }
+`
+
+const Wrapper = styled.div`
+    color: white;
+`
+
+const Title = styled.div`
+    ${sharedTitleStyles};
+`
+const Item = styled.div`
+    ${sharedItemStyles};
+`
+const ItemTitle = styled.div`
+    ${sharedItemTitleStyles};
 `
 
 const ItemContent = styled.div`
-    font-size: .5rem;
+    ${sharedItemContentStyles};
+
+`
+
+const EditableTitle = styled.input.attrs(props => ({
+    type: "text",
+}))`
+    ${sharedInputStyles};
+    ${sharedTitleStyles}
+    &:hover{
+        border-radius: 4px 4px 0 0;
+    }
+`
+
+const EditableItem = styled(Item)`
+    ${sharedItemStyles};
+`
+
+const EditableItemTitle = styled.input.attrs(props => ({
+    type: "text",
+}))`
+    ${sharedInputStyles};
+    ${sharedItemTitleStyles}
+`
+
+const EditableItemContent = styled.input.attrs(props => ({
+    type: "text",
+}))`
+    ${sharedInputStyles};
+    ${sharedItemContentStyles}
 `
 
 export default CvHeaderContent;

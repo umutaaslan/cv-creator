@@ -26,7 +26,8 @@ const HeaderForm = ({cvInfo, setCvInfo}) => {
         const newItem = {
             title: itemTitle,
             subItems: subItems,
-            id: uuidv4()
+            id: uuidv4(),
+            isEditable: false
         }
         const newCvInfo = {
             ...cvInfo,
@@ -41,10 +42,43 @@ const HeaderForm = ({cvInfo, setCvInfo}) => {
         setItemTitle(e.target.value);
     }
 
+
+    const handleEdit = (e) => {
+        const itemId = e.target.getAttribute("data-id");
+        const resultHeaderItems = cvInfo.headerItems.map(el => {
+            if(el.id === itemId){
+                let newEl;
+                if(el.isEditable){
+                    newEl = {...el, isEditable: false};
+                }
+                else{
+                    console.log(el.isEditable)
+                    newEl = {...el, isEditable: true};
+                }
+                return newEl;
+            }
+            else{
+                return el;
+            }
+        })
+        const resultCvInfo = {...cvInfo, headerItems: resultHeaderItems};
+        setCvInfo(resultCvInfo);
+
+    }
+
     
     return ( 
         <Wrapper>
-            <p>sagjnkadn</p>
+            <ModifierWrapper>
+            {cvInfo.headerItems.map(item => {
+                return (
+                    <ModifierItem key={item.id}>
+                        <span>{item.title}</span>
+                        <EditIcon src="../../public/editIcon.svg" alt="EDIT" data-id={item.id} onClick={(e) => handleEdit(e)}/>
+                    </ModifierItem>
+                )
+            })}
+            </ModifierWrapper>
             <DialogElement open={open} setOpen={setOpen}>
                 <label style={{marginBottom: 24 + "px"}}>
                     <h2>Title</h2>
@@ -69,6 +103,21 @@ const Wrapper = styled.div`
     height: 100%;
     width: 100%;
 `
+
+const ModifierWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+const ModifierItem = styled.div`
+    border: 1px solid blue;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`
 const AddSubItemButton = styled.button`
     position: absolute;
     top: 64px;
@@ -77,5 +126,16 @@ const AddSubItemButton = styled.button`
     height: 96px;
 `
 
+
+const EditIcon = styled.img`
+    scale: 1.5;
+    display: inline-block;
+    transition: 0.2s;
+
+    &:hover{
+        transform: rotate(30deg);
+        cursor: pointer;
+    }
+`
 
 export default HeaderForm;

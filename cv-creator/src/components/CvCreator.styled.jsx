@@ -4,7 +4,9 @@ import Cv from "./Cv.styled";
 import { useState } from "react";
 
 const CvCreator = () => {
-    const [cvInfo, setCvInfo] = useState({name: "", occupation: "", about: "", headerItems: [], });
+    const [cvInfo, setCvInfo] = useState({name: "", occupation: "", about: "", headerItems: [
+{title: 'header1', isEditable: false, subItems: [ 
+{id: '7fce0c67-ef1f-4ef5-a677-1a604f4db0e9', title: 'subtitle', detail: 'subdetail'}], id: '811199a9-c508-46d8-8276-3f25b417e971'}], });
     return ( 
         <Wrapper>
             <CvModifier cvInfo={cvInfo} setCvInfo={setCvInfo}></CvModifier>
