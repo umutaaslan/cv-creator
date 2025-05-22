@@ -2,8 +2,7 @@ import { Dialog } from "radix-ui";
 import { useState } from "react";
 import styled from "styled-components";
 
-const DialogElement = ({title, children}) => {
-    const [open, setOpen] = useState(false);
+const DialogElement = ({title, children, open, setOpen}) => {
     
     return (
 	<Dialog.Root

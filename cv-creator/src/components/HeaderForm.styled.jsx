@@ -6,9 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 const HeaderForm = ({cvInfo, setCvInfo}) => {
-    // const handleChange = (e) => {
-    //     setCvInfo(prev => {return {...prev, [e.target.name]: e.target.value}});
-    // }
+    const [open, setOpen] = useState(false);
+
     const [subItems, setSubItems] = useState([]);
     const [itemTitle, setItemTitle] = useState("")
 
@@ -33,7 +32,8 @@ const HeaderForm = ({cvInfo, setCvInfo}) => {
             ...cvInfo,
             headerItems: [...cvInfo.headerItems, newItem]
         }
-        setCvInfo(newCvInfo)
+        setCvInfo(newCvInfo);
+        setOpen(false);
         
     }
 
@@ -43,8 +43,9 @@ const HeaderForm = ({cvInfo, setCvInfo}) => {
 
     
     return ( 
-        <>
-            <DialogElement>
+        <Wrapper>
+            <p>sagjnkadn</p>
+            <DialogElement open={open} setOpen={setOpen}>
                 <label style={{marginBottom: 24 + "px"}}>
                     <h2>Title</h2>
                     <input type="text" name="title" value={itemTitle} onChange={(e) => handleItemTitleChange(e)}/>
@@ -58,12 +59,16 @@ const HeaderForm = ({cvInfo, setCvInfo}) => {
                 <AddSubItemButton onClick={handleAddSubItem}>+ Sub Item</AddSubItemButton>
 
             </DialogElement>
-        </>
+        </Wrapper>
      );
 }
  
 
-
+const Wrapper = styled.div`
+    position: relative;
+    height: 100%;
+    width: 100%;
+`
 const AddSubItemButton = styled.button`
     position: absolute;
     top: 64px;
@@ -71,5 +76,6 @@ const AddSubItemButton = styled.button`
     width: 48px;
     height: 96px;
 `
+
 
 export default HeaderForm;
