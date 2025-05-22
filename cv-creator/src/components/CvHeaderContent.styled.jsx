@@ -65,6 +65,7 @@ const sharedItemStyles = css`
     display: flex;
     flex-direction: column;
     margin-top: 8px;
+    margin-bottom: 12px;
 `;
 
 const sharedItemTitleStyles = css`
@@ -127,6 +128,7 @@ const EditableTitle = styled.input.attrs(props => ({
     &:hover{
         border-radius: 4px 4px 0 0;
     }
+    margin-bottom: 0px;
 `
 
 const EditableItem = styled(Item)`

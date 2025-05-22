@@ -29,11 +29,13 @@ const HeaderForm = ({cvInfo, setCvInfo}) => {
             id: uuidv4(),
             isEditable: false
         }
+        console.log(newItem)
         const newCvInfo = {
             ...cvInfo,
             headerItems: [...cvInfo.headerItems, newItem]
         }
         setCvInfo(newCvInfo);
+        setSubItems([]);
         setOpen(false);
         
     }
