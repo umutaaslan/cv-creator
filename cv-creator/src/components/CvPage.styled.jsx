@@ -2,10 +2,10 @@ import styled from "styled-components";
 import CvHeaderContent from "./CvHeaderContent.styled";
 import CvPageMainItem from "./CvPageMainItem.styled";
 
-const CvPage = ({cvInfo, setCvInfo}) => {
+const CvPage = ({cvInfo, setCvInfo, componentRef}) => {
     
     return ( 
-        <Wrapper>
+        <Wrapper ref={componentRef}>
             <Header>
                 {cvInfo.userImageURL && <StyledImage src={cvInfo.userImageURL} />}
                 <HeaderContentWrapper>

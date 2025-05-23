@@ -2,6 +2,7 @@ import styled from "styled-components";
 import CvModifier from "./CvModifier.styled";
 import Cv from "./Cv.styled";
 import { useState } from "react";
+import { useRef } from "react";
 
 const CvCreator = () => {
 
@@ -121,6 +122,8 @@ const CvCreator = () => {
     
     const [cvInfo, setCvInfo] = useState(exampleCvInfo);
     
+    const componentRef = useRef();
+    
     const handleClick = () => {
         const newValue = isExampleActive ? false : true;
         setIsExampleActive(newValue);
@@ -134,8 +137,8 @@ const CvCreator = () => {
         <>
             <StyledButton onClick={handleClick}>{buttonText}</StyledButton>
             <Wrapper>
-                <CvModifier cvInfo={cvInfo} setCvInfo={setCvInfo}></CvModifier>
-                <Cv cvInfo={cvInfo} setCvInfo={setCvInfo}></Cv>
+                <CvModifier cvInfo={cvInfo} setCvInfo={setCvInfo} componentRef={componentRef}></CvModifier>
+                <Cv cvInfo={cvInfo} setCvInfo={setCvInfo} componentRef={componentRef}></Cv>
             </Wrapper>
         </>
      );

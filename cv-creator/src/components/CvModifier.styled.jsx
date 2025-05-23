@@ -3,8 +3,38 @@ import AccordionElement from "./Accordion.styled";
 import PersonalDetailsForm from "./PersonalDetailsForm.styled";
 import HeaderForm from "./HeaderForm.styled";
 import EducationForm from "./EducationForm.styled";
+import html2pdf from "html2pdf.js"
 
-const CvModifier = ({cvInfo, setCvInfo}) => {
+const CvModifier = ({cvInfo, setCvInfo, componentRef}) => {
+    const handleClick = () => {
+        const original = componentRef.current;
+        console.log(original)
+
+        const clone = original.cloneNode(true);
+        console.log(clone)
+        clone.style.width = "794px";
+        clone.style.height = "1123px";
+        
+        
+
+        document.body.appendChild(clone);
+
+        html2pdf()
+        .set({
+            margin: 0,
+            filename: "cv.pdf",
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: { scale: 10 },
+            jsPDF: {
+            unit: "px",
+            format: [794, 1123],
+            orientation: "portrait",
+            },
+        })
+        .from(clone)
+        .save()
+        .then(() => clone.remove());
+    }
     return ( 
         <>
             <Wrapper>
@@ -27,6 +57,7 @@ const CvModifier = ({cvInfo, setCvInfo}) => {
                         key="item-3"
                     ><EducationForm cvInfo={cvInfo} setCvInfo={setCvInfo} /></AccordionElement>
             </AccordionWrapper>
+            <button onClick={handleClick}>Save</button>
             </Wrapper>
         </>
      );
