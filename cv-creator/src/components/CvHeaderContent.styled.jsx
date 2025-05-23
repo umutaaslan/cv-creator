@@ -34,12 +34,10 @@ const CvHeaderContent = ({headerItems, cvInfo, setCvInfo}) => {
             setCvInfo({...cvInfo, headerItems: newHeaderItems});
 
         }
-        // const newHeaderItems = 
-        // const newCvInfo = {...cvInfo, headerItems: newHeaderItems};
     }
     return ( 
         <Wrapper>
-            {headerItems.map(item => {
+            {headerItems[0] && headerItems[0].title != "" && headerItems.map(item => {
                 if(!item.isEditable){
                 return (
                 <React.Fragment key={item.id}>
@@ -54,9 +52,9 @@ const CvHeaderContent = ({headerItems, cvInfo, setCvInfo}) => {
                         
                     )
                 })}
-               
                 </React.Fragment>
                 )
+
             }
 
             if(item.isEditable){

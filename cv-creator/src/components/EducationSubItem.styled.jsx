@@ -18,11 +18,11 @@ const SubItem = ({index, item, subItems, setSubItems}) => {
         <>
         <h2>SubItem {index} </h2>
         <label>
-            <h5>SubItem role</h5>
+            <h5>SubItem role / degree</h5>
             <input type="text" name="role" onChange={(e) => handleChange(e)}/>
         </label>
         <label>
-            <h5>SubItem employer</h5>
+            <h5>SubItem employer / university</h5>
             <input type="text" name="employer" onChange={(e) => handleChange(e)}/>
         </label>
         <label>

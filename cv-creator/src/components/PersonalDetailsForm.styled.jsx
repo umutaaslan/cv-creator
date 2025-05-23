@@ -7,6 +7,11 @@ const PersonalDetailsForm = ({cvInfo, setCvInfo}) => {
         setCvInfo(prev => {return {...prev, [e.target.name]: e.target.value}});
     }
 
+    const handleImageInputChange = (e) => {
+        setCvInfo({...cvInfo, userImageURL: URL.createObjectURL(e.target.files[0])})
+    }
+
+
     return ( 
         <>
             <label>
@@ -21,6 +26,7 @@ const PersonalDetailsForm = ({cvInfo, setCvInfo}) => {
                 <h3>About</h3>
                 <input type="text" name="about" value={cvInfo.aboutf} onChange={(e) => handleChange(e)}/>
             </label>
+            <input type="file" accept="image/*" onChange={(e) => handleImageInputChange(e)}/>
         </>
      );
 }

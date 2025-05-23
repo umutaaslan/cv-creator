@@ -14,7 +14,6 @@ const Cv = ({cvInfo, setCvInfo}) => {
 }
  
 const Wrapper = styled.div`
-    border: 1px solid blue;
     width: 50%;
     height: 80%;
     padding: 0.5%;

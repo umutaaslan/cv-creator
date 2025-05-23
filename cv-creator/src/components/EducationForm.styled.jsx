@@ -75,6 +75,11 @@ const EducationForm = ({cvInfo, setCvInfo}) => {
         toggleEditability(e);
     }
     
+    const handleDeleteItem = (e) => {
+        const itemId = e.target.getAttribute("data-id");
+        const newMain = cvInfo.main.filter(el => el.id !== itemId);
+        setCvInfo({...cvInfo, main: newMain});
+    }
 
     return ( 
         <Wrapper>
@@ -83,6 +88,7 @@ const EducationForm = ({cvInfo, setCvInfo}) => {
                 return (
                     <ModifierItem key={item.id}>
                         <span>{item.title}</span>
+                        <button data-id={item.id} onClick={(e) => handleDeleteItem(e)}>Delete</button>
                         {!item.isEditable ? <EditIcon src="../../public/editIcon.svg" alt="EDIT" data-id={item.id} onClick={(e) => handleEdit(e)}/> 
                         :  <SaveIcon src="../../public/saveIcon.svg" alt="SAVE" data-id={item.id} onClick={(e) => handleSave(e)}/>}
                        

@@ -3,29 +3,27 @@ import CvHeaderContent from "./CvHeaderContent.styled";
 import CvPageMainItem from "./CvPageMainItem.styled";
 
 const CvPage = ({cvInfo, setCvInfo}) => {
-
-    console.log(cvInfo)
     
     return ( 
         <Wrapper>
             <Header>
-                <StyledImage src="../../public/examplePp.jpg"></StyledImage>
+                {cvInfo.userImageURL && <StyledImage src={cvInfo.userImageURL} />}
                 <HeaderContentWrapper>
-                    <CvHeaderContent headerItems={cvInfo.headerItems} cvInfo={cvInfo} setCvInfo={setCvInfo}></CvHeaderContent>
+                    <CvHeaderContent headerItems={cvInfo.headerItems} cvInfo={cvInfo} setCvInfo={setCvInfo} ></CvHeaderContent>
                 </HeaderContentWrapper>
             </Header>
             <Main>
                 <Name>
-                    {cvInfo.name || "Jonathan Doe"}
+                    {cvInfo.name}
                 </Name>
                 <Occupation>
-                    {cvInfo.occupation || "Web developer"}
+                    {cvInfo.occupation}
                 </Occupation>
                 <About>
-                    {cvInfo.about || "Highly motivated and results-oriented Web Developer with 4 years of experience in building user-friendly and responsive web applications. Proven ability to design, develop, and implement web applications using a variety of programming languages and frameworks. Passionate about creating innovative and performant web experiences."}
+                    {cvInfo.about}
                 </About>
                 
-                {cvInfo.main.map(item => {
+                {cvInfo.main[0] && cvInfo.main[0].title != "" && cvInfo.main.map(item => {
                     return (
                         <Section key={item.id} data-id={item.id}>
                             <SectionTitle>
@@ -44,7 +42,6 @@ const CvPage = ({cvInfo, setCvInfo}) => {
  
 
 const Wrapper = styled.div`
-    border: 1px solid red;
     height: 100%;
     width: 100%;
     display: flex;
@@ -54,7 +51,6 @@ const Header = styled.div`
     height: 100%;
     width: 32%;
     background-color: hsl(219 21% 25%);
-    border: 1px solid yellow;
     padding: 16px;
     padding-left: 20px;
     display: flex;
@@ -79,8 +75,8 @@ const HeaderContentWrapper = styled.div`
 `
 
 const Main = styled.main`
-     border: 5px solid green;
      height: 100%;
+     border: 1px solid #323B4D;
      width: 100%;
      padding: 48px 24px;
      overflow-x: auto;
