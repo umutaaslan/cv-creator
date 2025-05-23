@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import DialogElement from "./Dialog.styled";
-import SubItem from "./SubItem.styled"
-import { use, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { useState } from "react";
 
-
-const HeaderForm = ({cvInfo, setCvInfo}) => {
+const EducationForm = ({cvInfo, setCvInfo}) => {
     const [open, setOpen] = useState(false);
 
     const [subItems, setSubItems] = useState([]);
@@ -29,10 +26,10 @@ const HeaderForm = ({cvInfo, setCvInfo}) => {
             id: uuidv4(),
             isEditable: false
         }
-        console.log(newItem)
+
         const newCvInfo = {
             ...cvInfo,
-            headerItems: [...cvInfo.headerItems, newItem]
+            main: [...cvInfo.main, newItem]
         }
         setCvInfo(newCvInfo);
         setSubItems([]);
@@ -45,7 +42,7 @@ const HeaderForm = ({cvInfo, setCvInfo}) => {
 
     const toggleEditability = (e) => {
         const itemId = e.target.getAttribute("data-id");
-        const resultHeaderItems = cvInfo.headerItems.map(el => {
+        const resultMain = cvInfo.main.map(el => {
             if(el.id === itemId){
                 let newEl;
                 if(el.isEditable){
@@ -60,7 +57,7 @@ const HeaderForm = ({cvInfo, setCvInfo}) => {
                 return el;
             }
         })
-        const resultCvInfo = {...cvInfo, headerItems: resultHeaderItems};
+        const resultCvInfo = {...cvInfo, main: resultMain};
         setCvInfo(resultCvInfo);
     }
 
@@ -72,12 +69,12 @@ const HeaderForm = ({cvInfo, setCvInfo}) => {
     const handleSave = (e) => {
         toggleEditability(e);
     }
-
     
+
     return ( 
         <Wrapper>
             <ModifierWrapper>
-            {cvInfo.headerItems.map(item => {
+            {cvInfo.main.map(item => {
                 return (
                     <ModifierItem key={item.id}>
                         <span>{item.title}</span>
@@ -103,9 +100,9 @@ const HeaderForm = ({cvInfo, setCvInfo}) => {
 
             </DialogElement>
         </Wrapper>
-     );
+    );
 }
- 
+
 
 const Wrapper = styled.div`
     position: relative;
@@ -157,5 +154,5 @@ const SaveIcon = styled.img`
         cursor: pointer;
     }
 `
-
-export default HeaderForm;
+ 
+export default EducationForm;

@@ -2,14 +2,14 @@ import styled from "styled-components";
 import CvHeaderContent from "./CvHeaderContent.styled";
 import CvPageMainItem from "./CvPageMainItem.styled";
 
-const CvPage = ({cvInfo}) => {
+const CvPage = ({cvInfo, setCvInfo}) => {
     
     return ( 
         <Wrapper>
             <Header>
                 <StyledImage src="../../public/examplePp.jpg"></StyledImage>
                 <HeaderContentWrapper>
-                    <CvHeaderContent headerItems={cvInfo.headerItems}></CvHeaderContent>
+                    <CvHeaderContent headerItems={cvInfo.headerItems} cvInfo={cvInfo} setCvInfo={setCvInfo}></CvHeaderContent>
                 </HeaderContentWrapper>
             </Header>
             <Main>
@@ -22,6 +22,7 @@ const CvPage = ({cvInfo}) => {
                 <About>
                     {cvInfo.about || "Highly motivated and results-oriented Web Developer with 4 years of experience in building user-friendly and responsive web applications. Proven ability to design, develop, and implement web applications using a variety of programming languages and frameworks. Passionate about creating innovative and performant web experiences."}
                 </About>
+                
                 <Section>
                     <SectionTitle>
                     Employment

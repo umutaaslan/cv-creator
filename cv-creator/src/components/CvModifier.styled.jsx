@@ -2,6 +2,7 @@ import styled from "styled-components";
 import AccordionElement from "./Accordion.styled";
 import PersonalDetailsForm from "./PersonalDetailsForm.styled";
 import HeaderForm from "./HeaderForm.styled";
+import EducationForm from "./EducationForm.styled";
 
 const CvModifier = ({cvInfo, setCvInfo}) => {
     return ( 
@@ -21,10 +22,10 @@ const CvModifier = ({cvInfo, setCvInfo}) => {
                     ><HeaderForm cvInfo={cvInfo} setCvInfo={setCvInfo} /></AccordionElement>
 
                     <AccordionElement 
-                        header={"Personal Details3"}
+                        header={"Education & Experience"}
                         value="item-3"
                         key="item-3"
-                    ><PersonalDetailsForm cvInfo={cvInfo} setCvInfo={setCvInfo} /></AccordionElement>
+                    ><EducationForm cvInfo={cvInfo} setCvInfo={setCvInfo} /></AccordionElement>
             </AccordionWrapper>
             </Wrapper>
         </>
@@ -34,7 +35,6 @@ const CvModifier = ({cvInfo, setCvInfo}) => {
 
 
 const Wrapper = styled.div`
-    /* border: 1px solid red; */
     width: 40%;
     height: 70%;
 
@@ -49,7 +49,3 @@ const AccordionWrapper = styled.div`
 `
 
 export default CvModifier;
-
-
-
-//add radix primitives accordion (to learn how to use and configure 'em)

@@ -57,4 +57,27 @@ const StyledDate = styled.div`
     top: 0;
 `
 
+
+const EditableRole = styled.div`
+    font-size: .8rem;
+
+`
+
+const EditableEmployer = styled.div`
+    font-size: .7rem;
+    margin-bottom: 8px;
+`
+
+const EditableDescription = styled.div`
+    font-size: .5rem;
+
+`
+
+const EditableStyledDate = styled.div`
+    font-size: .6rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+`
+
 export default CvPageMainItem;

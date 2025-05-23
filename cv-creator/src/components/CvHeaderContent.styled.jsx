@@ -1,7 +1,42 @@
 import {styled, css} from "styled-components";
 import React from "react";
 
-const CvHeaderContent = ({headerItems}) => {
+const CvHeaderContent = ({headerItems, cvInfo, setCvInfo}) => {
+    
+    const handleChange = (e) => {
+        if(e.target.name === "mainTitle"){
+            const currItem = headerItems.find(el => el.id === e.target.getAttribute("data-id"));
+            const newItem = {...currItem, title: e.target.value};
+            const newHeaderItems = headerItems.map(el => {
+                return el.id === newItem.id ? newItem : el;
+            })
+            setCvInfo({...cvInfo, headerItems: newHeaderItems});
+        } 
+        else{
+            const currItem = headerItems.find(el => el.id === e.target.parentNode.getAttribute("data-id-main"));
+            const currSubItem = currItem.subItems.find(el => el.id === e.target.getAttribute("data-id"));
+            const newSubItem = {...currSubItem, [e.target.name]: e.target.value};
+
+            const newHeaderItems = headerItems.map(el => {
+                if(el.id === currItem.id){
+                    const newSubItems = el.subItems.map(subEl => {
+                        if(subEl.id === newSubItem.id){
+                            return newSubItem;
+                        }
+                        else subEl;
+                    });
+                    return {...el, subItems: newSubItems};
+                }
+                else{
+                    return el;
+                }
+            })
+            setCvInfo({...cvInfo, headerItems: newHeaderItems});
+
+        }
+        // const newHeaderItems = 
+        // const newCvInfo = {...cvInfo, headerItems: newHeaderItems};
+    }
     return ( 
         <Wrapper>
             {headerItems.map(item => {
@@ -27,12 +62,12 @@ const CvHeaderContent = ({headerItems}) => {
             if(item.isEditable){
                 return (
                 <React.Fragment key={item.id}>
-                    <EditableTitle data-id={item.id} placeholder={item.title} />
+                    <EditableTitle data-id={item.id} name="mainTitle" value={item.title} onChange={(e) => handleChange(e)} />
                     {item.subItems.map(subItem => {
                     return(
-                            <EditableItem key={subItem.id} data-id={subItem.id}>
-                                <EditableItemTitle placeholder={subItem.title} />
-                                <EditableItemContent placeholder={subItem.detail} />
+                            <EditableItem key={subItem.id} data-id={subItem.id} data-id-main={item.id}>
+                                <EditableItemTitle value={subItem.title} name="title" data-id={subItem.id} onChange={(e) => handleChange(e)} />
+                                <EditableItemContent value={subItem.detail} name="detail" data-id={subItem.id} onChange={(e) => handleChange(e)} />
                             </EditableItem>
                         
                     )
@@ -150,3 +185,8 @@ const EditableItemContent = styled.input.attrs(props => ({
 `
 
 export default CvHeaderContent;
+
+
+
+
+// change the CvPageMain inspiring from cvPage header
