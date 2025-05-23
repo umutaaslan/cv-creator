@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import DialogElement from "./Dialog.styled";
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
+import EducationSubItem from "./EducationSubItem.styled"
+
 
 const EducationForm = ({cvInfo, setCvInfo}) => {
     const [open, setOpen] = useState(false);
@@ -13,8 +16,10 @@ const EducationForm = ({cvInfo, setCvInfo}) => {
         const newSubItems = [...subItems];
         const newSubItem = {
             id: uuidv4(),
-            title: "",
-            detail: ""
+            role: '', 
+            employer: '', 
+            description: '', 
+            date: ''
         }
         setSubItems([...newSubItems, newSubItem]);
     }
@@ -93,7 +98,7 @@ const EducationForm = ({cvInfo, setCvInfo}) => {
                  
                  
                 {subItems.map((item, index) => {
-                    return <SubItem key={item.id} index={index} item={item} subItems={subItems} setSubItems={setSubItems} />
+                    return <EducationSubItem key={item.id} index={index} item={item} subItems={subItems} setSubItems={setSubItems} />
                 })}
                 <button onClick={handleAddItem}>ADD</button>
                 <AddSubItemButton onClick={handleAddSubItem}>+ Sub Item</AddSubItemButton>

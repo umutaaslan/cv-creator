@@ -1,16 +1,78 @@
-import styled from "styled-components";
+import {css, styled} from "styled-components";
 
-const CvPageMainItem = () => {
+const CvPageMainItem = ({id, role, employer, description, date, isEditable, cvInfo, setCvInfo}) => {
+
+
+    const handleChange = (e) => {
+        console.log(cvInfo)
+        
+            const currItem = cvInfo.main.find(el => el.id === e.target.parentNode.parentNode.getAttribute("data-id"));
+            const currSubItem = currItem.subItems.find(el => el.id === id);
+            const newSubItem = {...currSubItem, [e.target.name]: e.target.value};
+
+            const newMain = cvInfo.main.map(el => {
+                if(el.id === currItem.id){
+                    const newSubItems = el.subItems.map(subEl => {
+                        if(subEl.id === newSubItem.id){
+                            return newSubItem;
+                        }
+                        else subEl;
+                    });
+                    return {...el, subItems: newSubItems};
+                }
+                else{
+                    return el;
+                }
+            })
+            setCvInfo({...cvInfo, main: newMain});
+    }
+
+
     return ( 
         <Wrapper>
-            <Role>Web Developer</Role>
-            <Employer>Amazon</Employer>
-            <Description>Designed and developed responsive websites and web applications using HTML, CSS, JavaScript, and React.js. Implemented backend functionality using Python and Django. Collaborated with designers and project managers to ensure on-time delivery of projects.</Description>
-            <StyledDate>10/2021 - Present</StyledDate>
+            {!isEditable ?
+            <> 
+                <Role>{role}</Role>
+                <Employer>{employer}</Employer>
+                <Description>{description}</Description>
+                <StyledDate>{date}</StyledDate>
+            </>
+            : 
+            <>
+                <EditableRole value={role} name="role" onChange={(e) => handleChange(e)} />
+                <EditableEmployer value={employer} name="employer" onChange={(e) => handleChange(e)} />
+                <EditableDescription value={description} name="description" onChange={(e) => handleChange(e)} />
+                <EditableStyledDate value={date} name="date" onChange={(e) => handleChange(e)} />
+            </>
+            }
+            
+            
         </Wrapper>
      );
 }
- 
+
+
+ const sharedInputStyles = css`
+    background: none;
+    border: none;
+    color: black;
+    width: 100%;
+
+
+    &:focus{
+        outline: none;
+    }
+    &::placeholder{
+        color: black;
+    }
+    &:hover{
+        outline: 1px solid green;
+        border-radius: 4px;
+        &::placeholder{
+            opacity: 0.5;
+        }
+    }
+`
 
 const Wrapper = styled.div`
     position: relative;
@@ -35,6 +97,9 @@ const Wrapper = styled.div`
     }
 `
 
+
+
+
 const Role = styled.div`
     font-size: .8rem;
 
@@ -58,26 +123,45 @@ const StyledDate = styled.div`
 `
 
 
-const EditableRole = styled.div`
+
+const EditableRole = styled.input.attrs(props => ({
+    type: "text",
+}))`
+    ${sharedInputStyles};
     font-size: .8rem;
+    width: 50%;
 
 `
 
-const EditableEmployer = styled.div`
+const EditableEmployer = styled.input.attrs(props => ({
+    type: "text",
+}))`
+    ${sharedInputStyles};
     font-size: .7rem;
     margin-bottom: 8px;
 `
 
-const EditableDescription = styled.div`
+const EditableDescription = styled.textarea.attrs(props => ({
+    rows: "5",
+    cols: "50"
+}))`
+    resize: none;
+    ${sharedInputStyles};
     font-size: .5rem;
 
 `
 
-const EditableStyledDate = styled.div`
+const EditableStyledDate = styled.input.attrs(props => ({
+    type: "text",
+}))`
+    ${sharedInputStyles};
     font-size: .6rem;
     position: absolute;
     right: 0;
     top: 0;
+    width: 50%;
+    text-align: right;
 `
+
 
 export default CvPageMainItem;

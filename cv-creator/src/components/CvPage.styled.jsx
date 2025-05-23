@@ -3,6 +3,8 @@ import CvHeaderContent from "./CvHeaderContent.styled";
 import CvPageMainItem from "./CvPageMainItem.styled";
 
 const CvPage = ({cvInfo, setCvInfo}) => {
+
+    console.log(cvInfo)
     
     return ( 
         <Wrapper>
@@ -23,19 +25,18 @@ const CvPage = ({cvInfo, setCvInfo}) => {
                     {cvInfo.about || "Highly motivated and results-oriented Web Developer with 4 years of experience in building user-friendly and responsive web applications. Proven ability to design, develop, and implement web applications using a variety of programming languages and frameworks. Passionate about creating innovative and performant web experiences."}
                 </About>
                 
-                <Section>
-                    <SectionTitle>
-                    Employment
-                    </SectionTitle>
-                    <CvPageMainItem />
-                    <CvPageMainItem />
-                </Section>
-                <Section>
-                    <SectionTitle>
-                    Education
-                    </SectionTitle>
-                    <CvPageMainItem />
-                </Section>
+                {cvInfo.main.map(item => {
+                    return (
+                        <Section key={item.id} data-id={item.id}>
+                            <SectionTitle>
+                                {item.title}
+                            </SectionTitle>
+                            {item.subItems.map(subItem => {
+                                return <CvPageMainItem key={subItem.id} id={subItem.id} role={subItem.role} employer={subItem.employer} description={subItem.description} date={subItem.date} isEditable={item.isEditable} cvInfo={cvInfo} setCvInfo={setCvInfo}/>
+                            })}
+                         </Section>
+                )
+                })}
             </Main>
         </Wrapper>
      );
