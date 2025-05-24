@@ -49,7 +49,10 @@ const StyledAddItemButton = styled.button`
     transition: 0.1s;
 
     &:hover {
-        scale: 1.1;
+        scale: 1.02;
+    background-color: #45A049;
+
+        
     }
 `
 

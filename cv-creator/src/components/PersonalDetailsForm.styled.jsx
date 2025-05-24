@@ -70,6 +70,7 @@ const StyledLabelButton = styled.label`
 
     &:hover {
         scale: 1.1;
+        background-color: hsl(200, 70%, 42%);
     }
 `
  
