@@ -10,13 +10,13 @@ const DialogElement = ({title, children, open, setOpen}) => {
         onOpenChange={setOpen}
         modal="true"
     >
-		<Dialog.Trigger asChild><button>Add Item</button></Dialog.Trigger>
+		<Dialog.Trigger asChild><StyledAddItemButton>+ Add Item +</StyledAddItemButton></Dialog.Trigger>
 		<Dialog.Portal>
 			<StyledDialogOverlay />
 			<StyledDialogContent>
                 <Dialog.Description></Dialog.Description>
 				<StyledDialogTitle>Add a new item</StyledDialogTitle>
-				<Dialog.Close asChild><CloseButton><img src="../../public/closeIcon.svg" alt="close" style={{height: 100 + "%", width: 100 + "%"}}/></CloseButton></Dialog.Close>
+				<Dialog.Close asChild><CloseButton><img src="/closeIcon.svg" alt="close" style={{height: 100 + "%", width: 100 + "%"}}/></CloseButton></Dialog.Close>
                 {children}
 			</StyledDialogContent>
 		</Dialog.Portal>
@@ -34,6 +34,23 @@ const StyledDialogOverlay = styled(Dialog.Overlay)`
 const StyledDialogTitle = styled(Dialog.Title)`
     
 
+`
+
+const StyledAddItemButton = styled.button`
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 6px 8px;
+    margin: 20px 0 8px 24px;
+    cursor: pointer;
+    transition: 0.1s;
+
+    &:hover {
+        scale: 1.1;
+    }
 `
 
 const StyledDialogContent = styled(Dialog.Content)`

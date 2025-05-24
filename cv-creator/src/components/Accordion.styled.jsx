@@ -69,9 +69,10 @@ const StyledAccordionTrigger = styled(Accordion.Trigger)`
 `
 
 const StyledAccordionContent = styled(Accordion.Content)`
-    background-color: red;
+    background-color: rgb(36, 36, 36);
     overflow: clip;
     font-weight: 400;
+    color: white;
 
 
     &[data-state="open"] {

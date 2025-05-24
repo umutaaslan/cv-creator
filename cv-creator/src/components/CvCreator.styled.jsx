@@ -10,7 +10,7 @@ const CvCreator = () => {
     name: "John Doe",
     occupation: "Full Stack Developer",
     about: "I'm a highly motivated full stack developer with a strong foundation in both frontend and backend technologies. Over the past several years, I've designed, developed, and deployed scalable web applications across various industries, from e-commerce to ed-tech. My approach combines clean architecture, intuitive UI/UX, and performance optimization. I thrive in collaborative environments where communication and code quality are valued. Passionate about continuous learning, I stay up to date with emerging tools and frameworks to build impactful digital experiences.",
-    userImageURL: "../../public/examplePp.jpg",
+    userImageURL: "/examplePp.jpg",
 
     headerItems: [
         {

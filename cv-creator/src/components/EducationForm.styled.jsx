@@ -83,19 +83,6 @@ const EducationForm = ({cvInfo, setCvInfo}) => {
 
     return ( 
         <Wrapper>
-            <ModifierWrapper>
-            {cvInfo.main.map(item => {
-                return (
-                    <ModifierItem key={item.id}>
-                        <span>{item.title}</span>
-                        <button data-id={item.id} onClick={(e) => handleDeleteItem(e)}>Delete</button>
-                        {!item.isEditable ? <EditIcon src="../../public/editIcon.svg" alt="EDIT" data-id={item.id} onClick={(e) => handleEdit(e)}/> 
-                        :  <SaveIcon src="../../public/saveIcon.svg" alt="SAVE" data-id={item.id} onClick={(e) => handleSave(e)}/>}
-                       
-                    </ModifierItem>
-                )
-            })}
-            </ModifierWrapper>
             <DialogElement open={open} setOpen={setOpen}>
                 <label style={{marginBottom: 24 + "px"}}>
                     <h2>Title</h2>
@@ -110,6 +97,20 @@ const EducationForm = ({cvInfo, setCvInfo}) => {
                 <AddSubItemButton onClick={handleAddSubItem}>+ Sub Item</AddSubItemButton>
 
             </DialogElement>
+
+            <ModifierWrapper>
+            {cvInfo.main.map(item => {
+                return (
+                    <ModifierItem key={item.id}>
+                        <span>{item.title}</span>
+                        <DeleteIcon src="/delete.svg" data-id={item.id} onClick={(e) => handleDeleteItem(e)} />
+                        {!item.isEditable ? <EditIcon src="/editIcon.svg" alt="EDIT" data-id={item.id} onClick={(e) => handleEdit(e)}/> 
+                        :  <SaveIcon src="/saveIcon.svg" alt="SAVE" data-id={item.id} onClick={(e) => handleSave(e)}/>}
+                       
+                    </ModifierItem>
+                )
+            })}
+            </ModifierWrapper>
         </Wrapper>
     );
 }
@@ -127,14 +128,15 @@ const ModifierWrapper = styled.div`
 `
 
 const ModifierItem = styled.div`
-    border: 1px solid blue;
+    border-bottom: 1px dotted blue;
     font-size: 1.5rem;
     font-weight: 500;
-    padding: 8px 24px;
+    padding: 16px 24px 16px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 `
+
 const AddSubItemButton = styled.button`
     position: absolute;
     top: 64px;
@@ -159,11 +161,24 @@ const SaveIcon = styled.img`
     scale: 1.5;
     display: inline-block;
     transition: 0.2s;
+    cursor: pointer;
 
     &:hover{
-        transform: rotate(30deg);
-        cursor: pointer;
+        scale: 1.7;
     }
 `
  
+const DeleteIcon = styled.img`
+    scale: 1.5;
+    display: inline-block;
+    transition: 0.2s;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 36px;
+
+    &:hover{
+        scale: 1.7;
+    }
+`
+
 export default EducationForm;
