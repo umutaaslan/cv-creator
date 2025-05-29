@@ -30,7 +30,7 @@ const CvPage = ({cvInfo, setCvInfo, componentRef}) => {
                                 {item.title}
                             </SectionTitle>
                             {item.subItems.map(subItem => {
-                                return <CvPageMainItem key={subItem.id} id={subItem.id} role={subItem.role} employer={subItem.employer} description={subItem.description} date={subItem.date} isEditable={item.isEditable} cvInfo={cvInfo} setCvInfo={setCvInfo}/>
+                                return subItem?.id && <CvPageMainItem key={subItem.id} id={subItem.id} role={subItem.role} employer={subItem.employer} description={subItem.description} date={subItem.date} isEditable={item.isEditable} cvInfo={cvInfo} setCvInfo={setCvInfo}/>
                             })}
                          </Section>
                 )

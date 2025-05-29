@@ -4,10 +4,10 @@ const CvPageMainItem = ({id, role, employer, description, date, isEditable, cvIn
 
 
     const handleChange = (e) => {
-        console.log(cvInfo)
         
             const currItem = cvInfo.main.find(el => el.id === e.target.parentNode.parentNode.getAttribute("data-id"));
             const currSubItem = currItem.subItems.find(el => el.id === id);
+
             const newSubItem = {...currSubItem, [e.target.name]: e.target.value};
 
             const newMain = cvInfo.main.map(el => {
@@ -16,8 +16,11 @@ const CvPageMainItem = ({id, role, employer, description, date, isEditable, cvIn
                         if(subEl.id === newSubItem.id){
                             return newSubItem;
                         }
-                        else subEl;
+                        return subEl;
                     });
+
+                    console.log(el.subItems);
+                    console.log(newSubItems);
                     return {...el, subItems: newSubItems};
                 }
                 else{

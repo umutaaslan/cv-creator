@@ -66,7 +66,7 @@ const CvCreator = () => {
     return ( 
         <>
             <StyledButton onClick={handleClick}>{buttonText}</StyledButton>
-            <StyledSaveButton onClick={handleSaveClick}>Save</StyledSaveButton>
+            <StyledSaveButton onClick={handleSaveClick}>Save your CV as PDF</StyledSaveButton>
             <Wrapper>
                 <CvModifier cvInfo={cvInfo} setCvInfo={setCvInfo} componentRef={componentRef}></CvModifier>
                 <Cv cvInfo={cvInfo} setCvInfo={setCvInfo} componentRef={componentRef}></Cv>
@@ -88,7 +88,7 @@ const StyledButton = styled.button`
     border: none;
     color: white;
     padding: 8px;
-    position: absolute;
+    position: fixed;
     left: 12px;
     top: 12px;
     border-radius: 6px;
@@ -102,10 +102,22 @@ const StyledButton = styled.button`
 
 const StyledSaveButton = styled.div`
     background-color: #2196F3;
+    border: none;
+    color: white;
+    padding: 8px;
+    position: fixed;
+    left: 204px;
+    top: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
 
     &:hover{
         background-color: #1976D2;
+        padding: 12px;
+
     }
+    
 `
 
  
